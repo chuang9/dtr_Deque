@@ -20,4 +20,5 @@ public interface Deque<T> {
 
     //returns true if deque is empty
     boolean isEmpty();
+    
 }

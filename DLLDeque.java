@@ -23,8 +23,13 @@ public class DLLDeque<T> implements Deque<T> {
     //returns and removes first element of deque; throws exception if deque is empty
     public T removeFirst() {
 	T retVal = _front.getCargo();
-        _front = _front.getPrev();
-        _front.setNext(null);
+        if (_front == _end) {
+            _front = _end = null;
+        }
+        else {
+            _front = _front.getPrev();
+            _front.setNext(null);
+        }
         return retVal;
     }
 
@@ -33,8 +38,6 @@ public class DLLDeque<T> implements Deque<T> {
         return _front.getCargo();
     }
     
-
-
     //inserts element into end of deque if possible w/o violating capacity restrictions
     public void addLast(T x) {
         if (isEmpty()) {
@@ -52,8 +55,13 @@ public class DLLDeque<T> implements Deque<T> {
     //returns and removes last element of deque; throws exception if deque is empty
     public T removeLast() {
         T retVal = _end.getCargo();
-        _end = _end.getNext();
-        _end.setPrev(null);
+        if (_front == _end) {
+            _front = _end = null;
+        }
+        else {
+            _end = _end.getNext();
+            _end.setPrev(null);
+        }
         return retVal;
     }
 
@@ -77,7 +85,9 @@ public class DLLDeque<T> implements Deque<T> {
 	return retStr + getFirst() + " " + "FRONT";
     }
 
+    
     public static void main(String[] args) {
+        
         DLLDeque<String> testDeque = new DLLDeque();
 	testDeque.addFirst("aa");
 	testDeque.addFirst("bb");
@@ -85,12 +95,12 @@ public class DLLDeque<T> implements Deque<T> {
 	testDeque.addLast("xx");
 	System.out.println(testDeque);
 
-	System.out.println(testDeque.removeLast());
-	System.out.println(testDeque.removeLast());	
-	System.out.println(testDeque.removeFirst());
-	System.out.println(testDeque.removeFirst());
-
+	System.out.println("remove last: " + testDeque.removeLast());
+	System.out.println("remove last: " + testDeque.removeLast());	
+	System.out.println("remove first: " + testDeque.removeFirst());
+	System.out.println("remove first: " + testDeque.removeFirst());
+        System.out.println("remove first, should throw exception:");
+        System.out.println(testDeque.removeFirst());
 
     }
-
 }

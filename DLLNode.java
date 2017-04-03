@@ -1,4 +1,5 @@
 public class DLLNode<T> {
+    
     T _cargo;
     DLLNode _prev;
     DLLNode _next;
@@ -32,4 +33,5 @@ public class DLLNode<T> {
     public DLLNode getNext() {
 	return _next;
     }
+    
 }
