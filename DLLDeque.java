@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class DLLDeque<T> implements Deque<T> {
 
     private DLLNode<T> _front, _end;
@@ -22,6 +24,10 @@ public class DLLDeque<T> implements Deque<T> {
 
     //returns and removes first element of deque; throws exception if deque is empty
     public T removeFirst() {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        
 	T retVal = _front.getCargo();
         if (_front == _end) {
             _front = _end = null;
@@ -33,8 +39,12 @@ public class DLLDeque<T> implements Deque<T> {
         return retVal;
     }
 
-    //returns first element of deque
+    //returns first element of deque; throws exception if deque is empty
     public T getFirst() {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        
         return _front.getCargo();
     }
     
@@ -54,6 +64,10 @@ public class DLLDeque<T> implements Deque<T> {
 
     //returns and removes last element of deque; throws exception if deque is empty
     public T removeLast() {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        
         T retVal = _end.getCargo();
         if (_front == _end) {
             _front = _end = null;
@@ -67,6 +81,10 @@ public class DLLDeque<T> implements Deque<T> {
 
     //returns last element of deque; throws exception if deque is empty
     public T getLast() {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        
         return _end.getCargo();
     }
 
@@ -77,30 +95,25 @@ public class DLLDeque<T> implements Deque<T> {
 
     public String toString() {
 	String retStr = "END ";
-	DLLNode<T> currentNode = _end;
-	while (currentNode.getNext() != null) {
-	    retStr += currentNode.getCargo() + " ";
-	    currentNode = currentNode.getNext();
-	}
-	return retStr + getFirst() + " " + "FRONT";
+
+        if (isEmpty()) {
+        }
+        else if (_front == _end) {
+            retStr += _front.getCargo() + " ";
+        }
+        else {
+            DLLNode<T> currentNode = _end;
+            while (currentNode != null) {
+                retStr += currentNode.getCargo() + " ";
+                currentNode = currentNode.getNext();
+            }
+        }
+        
+        return retStr + "FRONT";
     }
 
     
     public static void main(String[] args) {
-        
-        DLLDeque<String> testDeque = new DLLDeque();
-	testDeque.addFirst("aa");
-	testDeque.addFirst("bb");
-	testDeque.addLast("zz");
-	testDeque.addLast("xx");
-	System.out.println(testDeque);
-
-	System.out.println("remove last: " + testDeque.removeLast());
-	System.out.println("remove last: " + testDeque.removeLast());	
-	System.out.println("remove first: " + testDeque.removeFirst());
-	System.out.println("remove first: " + testDeque.removeFirst());
-        System.out.println("remove first, should throw exception:");
-        System.out.println(testDeque.removeFirst());
 
     }
 }
