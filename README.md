@@ -7,16 +7,16 @@
 #### Method Selections
 The methods that we chose as team included:
 ```
-    //inserts element in front of deque if possible w/o violating capacity
+    //inserts element in front of deque
     void addFirst(T x);
     
     //returns and removes first element of deque; throws exception if deque is empty
     T removeFirst();
     
-    //returns first element of deque
+    //returns first element of deque; throws exception if deque is empty
     T getFirst();
     
-    //inserts element into end of deque if possible w/o violating capacity restrictions
+    //inserts element into end of deque
     void addLast(T x);
     
     //returns and removes last element of deque; throws exception if deque is empty
@@ -25,7 +25,7 @@ The methods that we chose as team included:
     //returns last element of deque; throws exception if deque is empty
     T getLast();
     
-    //checks if the deque is empty
+    //returns true if deque is empty
     boolean isEmpty();
 ```
 
