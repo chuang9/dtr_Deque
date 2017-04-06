@@ -8,7 +8,7 @@ public class DLLDeque<T> implements Deque<T> {
         _front = _end = null;
     }
         
-    //inserts element in front of deque if possible w/o violating capacity
+    //inserts element in front of deque
     public void addFirst(T x) {
         if (isEmpty()) {
             DLLNode<T> newNode = new DLLNode(x, null , null);
@@ -48,7 +48,7 @@ public class DLLDeque<T> implements Deque<T> {
         return _front.getCargo();
     }
     
-    //inserts element into end of deque if possible w/o violating capacity restrictions
+    //inserts element into end of deque
     public void addLast(T x) {
         if (isEmpty()) {
             DLLNode<T> newNode = new DLLNode(x, null , null);
